@@ -1,0 +1,3 @@
+{
+    "files": ["SVM.py","objdec.py","form.ui","nn.py","func.py","HOG.py","pre_trained.py"]
+}
