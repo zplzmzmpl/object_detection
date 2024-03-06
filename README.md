@@ -98,7 +98,9 @@ Fig 10. 训练结果weight权重数据
 ![image](https://github.com/zplzmzmpl/object_detection/assets/121420991/0f404d94-c375-4992-ac5d-137690c5a8c7)
 
 ---
-#【源程序清单及核心代码】
+
+# 【源程序清单及核心代码】
+
 /hog_nn.py/-------iou() function # 计算iou精度
 
 		  -------hog() function # 计算hog特征
