@@ -15,7 +15,7 @@
 * ***HOG+NN模块***
 
 用户参数设置：
-	*Crop_num为裁剪的区域数量，用于创建训练数据集
+	Crop_num为裁剪的区域数量，用于创建训练数据集
  * Seg_size 为裁剪区域的边长
  * train_num为训练次数
  * learning_rate为神经网络学习率
@@ -101,52 +101,60 @@ Fig 10. 训练结果weight权重数据
 
 # 【源程序清单及核心代码】
 
-/hog_nn.py/-------iou() function # 计算iou精度
+	/hog_nn.py/-------iou() function # 计算iou精度
+	
+			  -------hog() function # 计算hog特征
+					
+			  -------resize() function # 图像裁剪
+					
+			  -------crop_db() function # 创建训练数据集
+					
+			  -------slid_window() function # 滑动窗口
+					
+			  -------evaluation() function # 评估函数
+					
+			  -------nms() function # 非极值抑制
 
-		  -------hog() function # 计算hog特征
+---
+		
+	/CNN.py/-------class cnn:
+	
+				------__init__() function # 初始化参数
 				
-		  -------resize() function # 图像裁剪
-				
-		  -------crop_db() function # 创建训练数据集
-				
-		  -------slid_window() function # 滑动窗口
-				
-		  -------evaluation() function # 评估函数
-				
-		  -------nms() function # 非极值抑制
-				
-/CNN.py/-------class cnn:
-
-------__init__() function # 初始化参数
-
-------forward() function # 前向传播
-
+				------forward() function # 前向传播
+			
 				------train() function # 训练函数
+    
+---
 				
-/yolo_pretrained.py/--------run_mode() function # 调用预训练模型
+	/yolo_pretrained.py/--------run_mode() function # 调用预训练模型
 
-/HOG.py/------ class Hog_descriptor():
+ ---
 
-			 -------extract() function # 主功能函数，计算图像的HOG描述符
-				
-			 -------global_gradient() function # 辅助函数，使用sobel算子计算x、y的梯度和方向
-				
-			 --------- cell_gradient() function # 辅助函数，为一个cell单元构建梯度方向直方图
-				
-			 --------- gradient_image() function # 辅助函数，将梯度直方图转化为特征图像
-				
-/SVM.py/------- kernelTrans() function # 计算核函数值，将样本映射到高维空间
+	/HOG.py/------ class Hog_descriptor():
+	
+				 -------extract() function # 主功能函数，计算图像的HOG描述符
+					
+				 -------global_gradient() function # 辅助函数，使用sobel算子计算x、y的梯度和方向
+					
+				 --------- cell_gradient() function # 辅助函数，为一个cell单元构建梯度方向直方图
+					
+				 --------- gradient_image() function # 辅助函数，将梯度直方图转化为特征图像
+     
+---
 
-		-------class optStruct() # 求解核函数值的类
-		
-		------- innerL() function # SVM优化alpha函数
-		
-		-------smoP() function # 调用SMO函数并计算权重
-		
-		-------SMO() function # SMO算法优化SVM
-		
-		-------LoadDataset() function # 加载数据集
-		
-		-------do_training() function # 训练函数
-		
-		-------run() function # 运行函数
+	/SVM.py/------- kernelTrans() function # 计算核函数值，将样本映射到高维空间
+	
+			-------class optStruct() # 求解核函数值的类
+			
+			------- innerL() function # SVM优化alpha函数
+			
+			-------smoP() function # 调用SMO函数并计算权重
+			
+			-------SMO() function # SMO算法优化SVM
+			
+			-------LoadDataset() function # 加载数据集
+			
+			-------do_training() function # 训练函数
+			
+			-------run() function # 运行函数
